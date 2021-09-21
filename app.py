@@ -36,23 +36,9 @@ def addrev():
 
             with sql.connect("reviewData.db") as con:
                 cur = con.cursor()
+                
                 cur.execute("INSERT INTO Reviews (Username,Restaurant,ReviewTime,Rating,Review) VALUES (?,?,?,?,?)",(un,rs,rt,ov,rv) )
                 cur.execute("INSERT INTO Ratings (Restaurant,Food,Service,Ambience,Price,Overall) VALUES (?,?,?,?,?,?)",(rs,fd,sv,am,pr,ov))
-                '''cur.execute(
-                    IF EXISTS(SELECT * FROM Ratings WHERE Restaurant = ?), (rs,))           
-                    BEGIN
-                        UPDATE Ratings SET Food = (SELECT AVG(Food) FROM Ratings WHERE Restaurant = ?), (fd,))
-                        UPDATE Ratings SET Service = (SELECT AVG(Service) FROM Ratings WHERE Restaurant = ?), (sv,))
-                        UPDATE Ratings SET Ambience = (SELECT AVG(Ambience) FROM Ratings WHERE Restaurant = ?), (am,))
-                        UPDATE Ratings SET Price = (SELECT AVG(Price) FROM Ratings WHERE Restaurant = ?), (pr,))
-                        UPDATE Ratings SET Rating = (SELECT AVG(Overall) FROM Ratings WHERE Restaurant = ?), (ov,))
-                    END
-                    ELSE
-                    BEGIN
-                        INSERT INTO Ratings (Restaurant,Food,Service,Ambience,Price,Overall) VALUES (?,?,?,?,?,?)",(rs,fd,sv,am,pr,ov)  
-                    END
-                    )
-                '''
 
                 con.commit()
         except:
