@@ -1,0 +1,19 @@
+<html>
+    <body>
+      
+        <form action="{{ url_for('addrev') }}" method="POST">
+            <h1>Write a Review</h3>
+            <p>Username: <input name="Username" type="text" /></p>
+            <p>Restaurant: <input name="Restaurant" type="text" /></p>
+            <p>Food: <input name="Food" type="text" /></p>
+            <p>Service: <input name="Service" type="text" /></p>
+            <p>Ambience: <input name="Ambience" type="text" /></p>
+            <p>Price: <input name="Price" type="text" /></p>
+            <p>Overall: <input name="Overall" type="text" /></p>
+            <p>Review:<br /><textarea name="Review"></textarea></p>
+            <p><input type="submit" value="Submit" /></p>
+            <p><a href="/">Back to Home</a></p>
+        </form>
+      
+    </body>
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+    <body>
+        <h1 style="text-align: center;">Top Restaurants in Town</h1>
+        <table style="margin-left: auto; margin-right: auto;" border="1">
+            <thead>
+                <td>Restaurant</td>
+                <td>Food</td>
+                <td>Service</td>
+                <td>Ambience</td>
+                <td>Price</td>
+                <td>Rating</td>
+            </thead>
+
+            {% for row in rows %}
+            <tr>
+                <td>{{row["Restaurant"]}}</td>
+                <td>{{row["Food"]}}</td>
+                <td>{{row["Service"]}}</td>
+                <td>{{row["Ambience"]}}</td>
+                <td>{{row["Price"]}}</td>
+                <td>{{row["Overall"]}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <p style="text-align: center;"><a href="/">Back to Home</a></p>
+
+    </body>
+</html>
