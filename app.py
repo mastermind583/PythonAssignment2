@@ -36,7 +36,8 @@ def addrev():
 
             with sql.connect("reviewData.db") as con:
                 cur = con.cursor()
-                
+
+                #insert the data from the html form into both of the tables
                 cur.execute("INSERT INTO Reviews (Username,Restaurant,ReviewTime,Rating,Review) VALUES (?,?,?,?,?)",(un,rs,rt,ov,rv) )
                 cur.execute("INSERT INTO Ratings (Restaurant,Food,Service,Ambience,Price,Overall) VALUES (?,?,?,?,?,?)",(rs,fd,sv,am,pr,ov))
 
@@ -58,9 +59,9 @@ def getrev():
 
         con = sql.connect("reviewData.db")
         con.row_factory = sql.Row
-        
-        #only select rows for the restaurant that the user inputted
         cur = con.cursor()
+
+        #only select rows for the restaurant that the user inputted
         cur.execute("SELECT Username, Review, Rating FROM Reviews WHERE Restaurant = ?",(rs,))
         rows = cur.fetchall()
 
@@ -69,9 +70,11 @@ def getrev():
 @app.route('/report')
 def list():
    con = sql.connect("reviewData.db")
-   con.row_factory = sql.Row
-   
+   con.row_factory = sql.Row  
    cur = con.cursor()
+
+   #Select the AVG rating values for each unique restaurant, sort by overall rating and then restaurant,
+   # only select up to 10 restaurants 
    cur.execute('''
                 SELECT Restaurant, AVG(Food) AS Food, AVG(Service) AS Service, AVG(Ambience) AS Ambience, 
                 AVG(Price) AS Price, AVG(Overall) AS Overall FROM Ratings GROUP BY Restaurant 
