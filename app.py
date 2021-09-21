@@ -20,6 +20,7 @@ def new_review():
 def get_review():
    return render_template('getReviews.html')
 
+#Add a review and report to the database
 @app.route('/addrev',methods = ['POST', 'GET'])
 def addrev():
     if request.method == 'POST':
@@ -49,6 +50,7 @@ def addrev():
             return render_template("index.html")
             con.close()
 
+#show all reviews for a specific restaurant
 @app.route('/getrev',methods = ['POST', 'GET'])
 def getrev():
     if request.method == 'POST':
@@ -67,6 +69,7 @@ def getrev():
 
         return render_template("showReviews.html", restaurant = rs, rows = rows)
 
+#list the top 10 restaurants
 @app.route('/report')
 def list():
    con = sql.connect("reviewData.db")
